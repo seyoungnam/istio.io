@@ -99,6 +99,8 @@ disableAliases = true
         contentDir = "content/en"
     [languages.pt-br]
         contentDir = "content/pt-br"
+    [languages.kr]
+        contentDir = "content/kr"
 
 [menu]
   [[menu.main]]

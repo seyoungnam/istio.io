@@ -4,14 +4,14 @@ description: 트래픽 전송과 제어 관련 Istio의 다양한 기능을 설�
 weight: 20
 keywords: [traffic-management, pilot, envoy-proxies, service-discovery, load-balancing]
 aliases:
-    - /kr/docs/concepts/traffic-management/pilot
-    - /kr/docs/concepts/traffic-management/rules-configuration
-    - /kr/docs/concepts/traffic-management/fault-injection
-    - /kr/docs/concepts/traffic-management/handling-failures
-    - /kr/docs/concepts/traffic-management/load-balancing
-    - /kr/docs/concepts/traffic-management/request-routing
-    - /kr/docs/concepts/traffic-management/pilot.html
-    - /kr/docs/concepts/traffic-management/overview.html
+    - /docs/concepts/traffic-management/pilot
+    - /docs/concepts/traffic-management/rules-configuration
+    - /docs/concepts/traffic-management/fault-injection
+    - /docs/concepts/traffic-management/handling-failures
+    - /docs/concepts/traffic-management/load-balancing
+    - /docs/concepts/traffic-management/request-routing
+    - /docs/concepts/traffic-management/pilot.html
+    - /docs/concepts/traffic-management/overview.html
 owner: istio/wg-networking-maintainers
 test: n/a
 ---
