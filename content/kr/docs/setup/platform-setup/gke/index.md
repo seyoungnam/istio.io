@@ -11,9 +11,9 @@ owner: istio/wg-environments-maintainers
 test: no
 ---
 
-Follow these instructions to prepare a GKE cluster for Istio.
+Istio가 구동되는 GKE 클러스터 준비를 위해 아래 설명을 따르세요.
 
-1. Create a new cluster.
+1. 새로운 클러스터를 생성합니다.
 
     {{< text bash >}}
     $ export PROJECT_ID=`gcloud config get-value project` && \
@@ -30,29 +30,25 @@ Follow these instructions to prepare a GKE cluster for Istio.
     {{< /text >}}
 
     {{< tip >}}
-    The default installation of Istio requires nodes with >1 vCPU. If you are
-    installing with the
-    [demo configuration profile](/docs/setup/additional-setup/config-profiles/),
-    you can remove the `--machine-type` argument to use the smaller `n1-standard-1` machine size instead.
+    Istio의 디폴트 설치는 최소 한개 초과(>1)의 vCPU가 포함된 노드를 요구합니다. 만약 [demo 설정 프로파일](/docs/setup/additional-setup/config-profiles/)에 따라 설치를 진행하는 경우, `--machine-type` 인수를 제거하여 더 작은 `n1-standard-1` 머신 사이즈를 사용할 수 있습니다.
     {{< /tip >}}
 
     {{< warning >}}
-    To use the Istio CNI feature on GKE, please check the [CNI installation guide](/docs/setup/additional-setup/cni/#prerequisites)
-    for prerequisite cluster configuration steps.
+    GKE에서 Istio CNI 기능을 사용하고자 한다면 [CNI 설치 가이드](/docs/setup/additional-setup/cni/#prerequisites)를 통해 클러스터의 필수 구성요소 설정 방법을 확인하세요.
     {{< /warning >}}
 
     {{< warning >}}
-    **For private GKE clusters**
+    **비공개(private) GKE 클러스터의 경우**
 
-    An automatically created firewall rule does not open port 15017. This is needed by the Pilot discovery validation webhook.
+    자동으로 생성된 방화벽 규칙은 15017 포트를 열지 못합니다. 이 포트는 Pilot discovery validation webhook에 필요합니다.
 
-    To review this firewall rule for master access:
+    마스터 액세스를 위해 이 방화벽 규칙을 검토하려면:
 
     {{< text bash >}}
     $ gcloud compute firewall-rules list --filter="name~gke-${CLUSTER_NAME}-[0-9a-z]*-master"
     {{< /text >}}
 
-    To replace the existing rule and allow master access:
+    기존 규칙을 바꿔 마스터 액세스를 허용하려면:
 
     {{< text bash >}}
     $ gcloud compute firewall-rules update <firewall-rule-name> --allow tcp:10250,tcp:443,tcp:15017
@@ -60,7 +56,7 @@ Follow these instructions to prepare a GKE cluster for Istio.
 
     {{< /warning >}}
 
-1. Retrieve your credentials for `kubectl`.
+1. `kubectl`에 대한 자격 증명을 얻으세요.
 
     {{< text bash >}}
     $ gcloud container clusters get-credentials $CLUSTER_NAME \
@@ -68,9 +64,8 @@ Follow these instructions to prepare a GKE cluster for Istio.
         --project $PROJECT_ID
     {{< /text >}}
 
-1. Grant cluster administrator (admin) permissions to the current user. To
-   create the necessary RBAC rules for Istio, the current user requires admin
-   permissions.
+1. 현재 사용자에게 클러스터 관리자 (admin) 권한을 부여하세요. 현재 사용자는 Istio를 위해 필요한 RBAC 규칙을 생성해야 하기에
+   관리자 권한이 필요합니다.
 
     {{< text bash >}}
     $ kubectl create clusterrolebinding cluster-admin-binding \
@@ -78,15 +73,15 @@ Follow these instructions to prepare a GKE cluster for Istio.
         --user=$(gcloud config get-value core/account)
     {{< /text >}}
 
-## Multi-cluster communication
+## 다중 클러스터 통신
 
-In some cases, a firewall rule must be explicitly created to allow cross-cluster traffic.
+경우에 따라 클러스터 간 트래픽 전송을 위해 방화벽 규칙을 명시적으로 생성해야 합니다.
 
 {{< warning >}}
-The following instructions will allow communication between *all* clusters in your project. Adjust the commands as needed.
+아래 설명은 당신의 프로젝트 내 *모든* 클러스터 간 통신을 허용해 줄 것입니다. 필요에 따라 명령어를 수정하세요.
 {{< /warning >}}
 
-1. Gather information about your clusters' network.
+1. 클러스터 네트워크에 대한 정보를 수집합니다.
 
     {{< text bash >}}
     $ function join_by { local IFS="$1"; shift; echo "$*"; }
@@ -96,7 +91,7 @@ The following instructions will allow communication between *all* clusters in yo
     $ ALL_CLUSTER_NETTAGS=$(join_by , $(echo "${ALL_CLUSTER_NETTAGS}"))
     {{< /text >}}
 
-1. Create the firewall rule.
+1. 방화벽 규칙을 생성합니다.
 
     {{< text bash >}}
     $ gcloud compute firewall-rules create istio-multicluster-pods \

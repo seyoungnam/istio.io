@@ -11,56 +11,51 @@ owner: istio/wg-environments-maintainers
 test: no
 ---
 
-Follow these instructions to prepare a cluster for Istio using the
-[Huawei Cloud Container Engine](https://www.huaweicloud.com/intl/product/cce.html).
-You can deploy a Kubernetes cluster to Huawei Cloud quickly and easily in the
-`Cloud Container Engine Console`, which fully supports Istio.
+[화웨이 클라우드 컨테이너 엔진](https://www.huaweicloud.com/intl/product/cce.html)을 활용하여 Istio가 설치된 
+클러스터를 준비하고자 한다면 아래 설명을 따르세요. `클라우드 컨테이너 엔진 콘솔`에서 Istio를 지원하는 쿠버네티스 클러스터를 쉽고 간편하게 화웨이 클라우드에 배포할 수 있습니다.
 
 {{< tip >}}
-Huawei offers a {{< gloss >}}managed control plane{{< /gloss >}} add-on for the Huawei Cloud Container Engine,
-which you can use instead of installing Istio manually.
-Refer to [Huawei Application Service Mesh](https://support.huaweicloud.com/asm/index.html)
-for details and instructions.
+화웨이는 화웨이 클라우드 컨테이너 엔진 내 {{< gloss >}}managed control plane{{< /gloss >}} 애드온(add-on)을 제공하고 있으며, 이를 활용하면 Istio를 직접 설치할 필요가 없습니다.
+더 자세한 내용은 [화웨이 어플리케이션 서비스 메쉬](https://support.huaweicloud.com/asm/index.html)를 참고하세요.
 {{< /tip >}}
 
-Following the [Huawei Cloud Instructions](https://support.huaweicloud.com/en-us/qs-cce/cce_qs_0008.html) to prepare a cluster before manually installing Istio, proceed as follows:
+Istio를 직접 설치하기 전 클러스터 준비 시 [화웨이 클라우드 설명서](https://support.huaweicloud.com/en-us/qs-cce/cce_qs_0008.html)를 따르세요:
 
-1.  Log in to the CCE console. Choose **Dashboard** > **Buy Cluster** to open the **Buy Hybrid Cluster** page. An alternative way to open that page is to choose **Resource Management** > **Clusters** in the navigation pane and click **Buy** next to **Hybrid Cluster**.
+1. CCE 콘솔에 로그인 하세요. **Dashboard** > **Buy Cluster**를 선택하여 **Buy Hybrid Cluster** 페이지를 여세요. 해당 페이지를 여는 다른 방법은 네비게이션 창에서 **Resource Management** > **Clusters**을 선택하고 **Hybrid Cluster** 옆에 있는 **Buy**를 클릭하세요.
 
-1.  On the **Configure Cluster** page, configure cluster parameters.
-    In this example, a majority of parameters retain default values. After the cluster configuration is complete, click Next: **Create Node** to go to the node creation page.
+1.  **Configure Cluster** 페이지에서 클러스터 변수들을 설정하세요. 아래 예시에서는 대부분의 변수가 디폴트값으로 설정되어 있습니다. 클러스터 설정이 
+    끝났다면 Next: **Create Node**을 클릭하여 노드 생성 페이지로 이동하세요.
 
     {{< tip >}}
-    Istio release has some requirements for the Kubernetes version,
-    select the version according to Istio's [support policy](/docs/releases/supported-releases#support-status-of-istio-releases).
+    Istio는 쿠버네티스 버전별로 상이한 요구사항이 존재합니다. Istio의 [지원 정책](/docs/releases/supported-releases#support-status-of-istio-releases)에 따라 버전을 선택하세요.
     {{< /tip >}}
 
-    The image below shows the GUI where you create and configure the cluster:
+    아래 이미지는 클러스터를 생성하고 설정하는 GUI를 보여줍니다:
 
     {{< image link="./create-cluster.png" caption="Configure Cluster" >}}
 
-1.  On the node creation page, configure the following parameters
+1.  노드 생성 페이지에서 아래 변수를 설정하세요:
 
     {{< tip >}}
-    Istio adds some additional resource consumption,
-    from our experience, reserve at least 4 vCPU and 8 GB memory to begin playing.
+    Istio는 추가적인 자원을 요구합니다. 경험적으로 최소 4 vCPU와 8 GB 메모리를 확보하시는 것이 좋습니다.
     {{< /tip >}}
 
-    The image below shows the GUI where you create and configure the node:
+    아래 이미지는 노드를 생성하고 설정하는 GUI를 보여줍니다:
 
     {{< image link="./create-node.png" caption="Configure Node" >}}
 
-1.  [Configure kubectl](https://support.huaweicloud.com/intl/en-us/cce_faq/cce_faq_00041.html)
+1.  [kubectl 설정](https://support.huaweicloud.com/intl/en-us/cce_faq/cce_faq_00041.html)
 
-1.  Now you can install Istio on CCE cluster according to [install guide](/docs/setup/install).
+1.  [설치 가이드](/docs/setup/install)에 따라 CCE 클러스터에 Istio를 설치할 수 있습니다.
 
-1.  Configure [ELB](https://support.huaweicloud.com/intl/productdesc-elb/en-us_topic_0015479966.html) to expose Istio ingress gateway if needed.
+1.  필요에 따라 [ELB](https://support.huaweicloud.com/intl/productdesc-elb/en-us_topic_0015479966.html) 설정으로 
+    Istio 수신 게이트웨이를 노출하세요.
 
-    - [Create Elastic Load Balancer](https://console.huaweicloud.com/vpc/?region=ap-southeast-1#/elbs/createEnhanceElb)
+    - [Elastic Load Balancer 생성](https://console.huaweicloud.com/vpc/?region=ap-southeast-1#/elbs/createEnhanceElb)
 
-    - Bind the ELB instance to `istio-ingressgateway` service
+    - ELB 인스턴스를 `istio-ingressgateway` 서비스에 묶기
 
-      Set the ELB instance ID and `loadBalancerIP` to `istio-ingressgateway`.
+      ELB 인스턴스 ID와 `loadBalancerIP`를 `istio-ingressgateway`로 세팅하세요.
 
 {{< text bash >}}
 $ kubectl apply -f - <<EOF
@@ -121,4 +116,4 @@ spec:
 EOF
 {{< /text >}}
 
-Start playing with Istio by trying out the various [tasks](/docs/tasks).
+다양한 [과제](/docs/tasks)를 시도하면서 Istio를 경험하세요.

@@ -130,7 +130,7 @@ Istio의 분산 추적에 대한 더 많은 정보는 [분산 추적에 관한 F
 
 단일 요청에 대해 Istio가 생성한 분산추적의 예는 다음과 같습니다:
 
-{{< image link="/docs/tasks/observability/distributed-tracing/zipkin/istio-tracing-details-zipkin.png" caption="단일 요청에 대한 분산 추적" >}}
+{{< image link="/kr/docs/tasks/observability/distributed-tracing/zipkin/istio-tracing-details-zipkin.png" caption="단일 요청에 대한 분산 추적" >}}
 
 ## 엑세스 로그(Access logs)
 

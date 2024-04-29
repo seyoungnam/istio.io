@@ -3,6 +3,6 @@ title: Cluster
 test: n/a
 ---
 
-A cluster is set of compute nodes that run containerized applications.
-Typically, the compute nodes comprising a cluster can reach each other directly.
-Clusters limit external access through rules or policies.
+클러스터는 컨테이너화된 어플리케이션을 실행하는 컴퓨팅 노드의 집합입니다. 일반적으로 
+클러스터를 구성하고 있는 각각의 컴퓨팅 노드는 서로 직접적인 접근이 가능합니다.
+클러스터는 규칙이나 정책을 통해 외부 접근을 제한합니다.

@@ -3,9 +3,9 @@ title: 시작하기
 description: Istio 기능을 빠르고 쉽게 시도.
 weight: 5
 aliases:
-    - /docs/setup/kubernetes/getting-started/
-    - /docs/setup/kubernetes/
-    - /docs/setup/kubernetes/install/kubernetes/
+    - /kr/docs/setup/kubernetes/getting-started/
+    - /kr/docs/setup/kubernetes/
+    - /kr/docs/setup/kubernetes/install/kubernetes/
 keywords: [getting-started, install, bookinfo, quick-start, kubernetes]
 owner: istio/wg-environments-maintainers
 test: yes
@@ -14,16 +14,16 @@ test: yes
 {{< tip >}}
 {{< boilerplate gateway-api-future >}}
 게이트웨이 API를 통해 Istio를 시작하고 싶다면,
-아래 내용 대신 [시작하기 미래 버전](/docs/setup/additional-setup/getting-started/)을 참고하세요.
+아래 내용 대신 [시작하기 미래 버전](/kr/docs/setup/additional-setup/getting-started/)을 참고하세요.
 {{< /tip >}}
 
 이 가이드는 당신이 Istio를 빠르게 평가해 볼 기회를 제공합니다. 이미 Istio에 대해 익숙하거나 
-다른 설정 프로파일 혹은 고급 [배포 모델](/docs/ops/deployment/deployment-models/) 설치에 관심이 있다면,
-[어떤 Istio 설치 방법을 선택해야 할까?](/about/faq/#install-method-selection)의 FAQ 페이지를 
+다른 설정 프로파일 혹은 고급 [배포 모델](/kr/docs/ops/deployment/deployment-models/) 설치에 관심이 있다면,
+[어떤 Istio 설치 방법을 선택해야 할까?](/kr/about/faq/#install-method-selection)의 FAQ 페이지를 
 참고하세요.
 
-아래 내용을 따라가기 위해서는 [지원 중인 버전](/docs/releases/supported-releases#support-status-of-istio-releases)의 쿠버네티스 ({{< supported_kubernetes_versions >}})가 실행되고 있는 {{< gloss >}}클러스터{{< /gloss >}}가 있어야 합니다.
-또한 [미니큐브](https://kubernetes.io/docs/tasks/tools/install-minikube/) 혹은 [플랫폼별 설치 방법](/docs/setup/platform-setup/)에 기재되어 있는 플랫폼을 사용해야 합니다.
+아래 내용을 따라가기 위해서는 [지원 중인 버전](/kr/docs/releases/supported-releases#support-status-of-istio-releases)의 쿠버네티스 ({{< supported_kubernetes_versions >}})가 실행되고 있는 {{< gloss >}}cluster{{< /gloss >}}가 있어야 합니다.
+또한 [미니큐브](https://kubernetes.io/docs/tasks/tools/install-minikube/) 혹은 [플랫폼별 설치 방법](/kr/docs/setup/platform-setup/)에 기재되어 있는 플랫폼을 사용해야 합니다.
 
 
 Istio를 시작하기 위해 아래 단계를 따르십시오:
@@ -35,7 +35,7 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
 
 ## Istio 다운로드 {#download}
 
-1.  [Istio release]({{< istio_release_url >}}) 페이지로 가서 
+1.  [Istio 배포]({{< istio_release_url >}}) 페이지로 가서 
     당신의 OS에 맞는 설치 파일을 다운로드 하거나, 최신 배포 버전을 다운로드 하고
     압축을 푸세요(Linux 혹은 macOS):
 
@@ -66,7 +66,7 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
     해당 디렉터리 내부에는 아래의 요소들이 포함되어 있습니다:
 
     - `samples/` 내에는 샘플 어플리케이션 존재
-    - `bin/` 디렉터리에는 [`istioctl`](/docs/reference/commands/istioctl) 클라이언트 바이너리 존재
+    - `bin/` 디렉터리에는 [`istioctl`](/kr/docs/reference/commands/istioctl) 클라이언트 바이너리 존재
 
 1.  `istioctl` 클라이언트를 path에 추가하세요 (Linux or macOS):
 
@@ -76,14 +76,14 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
 
 ## Istio 설치하기 {#install}
 
-1.  이 설치 가이드에서는 `demo` [설정 프로필](/docs/setup/additional-setup/config-profiles/)을 
-    사용합니다. 테스팅을 하기 위해 좋은 기본값 세트 때문에 `demo`를 선택하는 것이긴 하나,
-    실배포 혹은 성능 테스팅을 위한 다른 좋은 프로필도 존재함을 명심하세요.
+1.  이 설치 가이드에서는 `demo` [설정 프로필](/kr/docs/setup/additional-setup/config-profiles/)을 
+    사용합니다. 테스팅에 적합한 디폴트 세팅 때문에 `demo`를 선택하는 것이긴 하나,
+    실배포 혹은 성능 테스팅을 위한 다른 프로필도 존재합니다.
 
     {{< warning >}}
     만약 당신의 플랫폼이 Openshift와 같은 벤더 맞춤 설정 프로필을 가지고 있다면,
     아래 명령어에 `demo` 프로필 대신 해당 프로필을 입력하시길 바랍니다. 자세한 내용은 
-    [플랫폼 지침서](/docs/setup/platform-setup/)를 참고하세요.
+    [플랫폼 지침서](/kr/docs/setup/platform-setup/)를 참고하세요.
     {{< /warning >}}
 
     {{< text bash >}}
@@ -105,7 +105,7 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
 
 ## 샘플 어플리케이션 배포하기 {#bookinfo}
 
-1.  [`Bookinfo` 샘플 어플리케이션](/docs/examples/bookinfo/)을 배포하세요:
+1.  [`Bookinfo` 샘플 어플리케이션](/kr/docs/examples/bookinfo/)을 배포하세요:
 
     {{< text bash >}}
     $ kubectl apply -f @samples/bookinfo/platform/kube/bookinfo.yaml@
@@ -152,7 +152,7 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
 
     {{< tip >}}
     위 명령어를 재실행하고 다음 단계로 가기 전에, 
-    모든 포드의 READY 상태가 `2/2`가 되고 STATUS 상태가 `Running`이 될 때까지 기다리세요. 
+    모든 포드의 READY가 `2/2`로 되고 STATUS가 `Running`이 될 때까지 기다리세요. 
     이 과정은 플랫폼에 따라 수 분이 소요될 수 있습니다. 
     {{< /tip >}}
 
@@ -167,11 +167,11 @@ Istio를 시작하기 위해 아래 단계를 따르십시오:
 
 ## 어플리케이션을 외부 트래픽에 오픈하기 {#ip}
 
-Bookinfo 어플리케이션은 배포되긴 했으나 외부에서의 접근은 불가능합니다. 접근할 수 있도록 만들기 위해서는
-접근 경로(path)를 메쉬의 경계에 있는 라우트(route)에 매핑해주는 
-[Istio 수신 게이트웨이](/docs/concepts/traffic-management/#gateways)를 만들어야 합니다.
+Bookinfo 어플리케이션은 배포되긴 했으나 외부에서의 접근은 불가능합니다. 외부로부터의 접근을 위해
+[Istio 수신 게이트웨이](/kr/docs/concepts/traffic-management/#gateways)를 만들어야 합니다. 
+Istio 수신 게이트웨이는 메쉬의 경계에서 접근 경로(path)를 라우트(route)와 매핑해주는 역할을 합니다. 
 
-1.  어플리케이션과 Istio 게이트웨이를 연결하세요:
+1.  이 어플리케이션과 Istio 게이트웨이를 연결하세요:
 
     {{< text bash >}}
     $ kubectl apply -f @samples/bookinfo/networking/bookinfo-gateway.yaml@
@@ -195,9 +195,9 @@ Bookinfo 어플리케이션은 배포되긴 했으나 외부에서의 접근은 
 
 {{< tab name="Minikube" category-value="external-lb" >}}
 
-트래픽을 당신의 Istio 수신 게이트웨이에 보내는 미니큐브 터널을 시작하기 위해 
-새 터미널 창에서 아래 명령어를 실행하십시오. 이는 `service/istio-ingressgateway`를 위한 
-외부 로드 밸런서인 `EXTERNAL-IP`를 만들어 줍니다.
+ 미니큐브 터널을 시작하기 위해 새 터미널 창에서 아래 명령어를 실행하십시오. 
+ 미니큐브 터널은 트래픽을 당신의 Istio 수신 게이트웨이로 보내는 역할을 합니다.
+ 즉, 이 명령어는 외부 로드 밸런서인 `service/istio-ingressgateway`의 `EXTERNAL-IP`값을 생성해 줍니다.
 
 {{< text bash >}}
 $ minikube tunnel
@@ -232,7 +232,7 @@ $ echo "$SECURE_INGRESS_PORT"
 
 {{< tab name="Other platforms" category-value="node-port" >}}
 
-아래 명령어를 수행하여 당신의 쿠버네티스 클러스타 외부 로드 벨런서를 지원하는 환경에서 실행되고 있는지 확인하십시오:
+아래 명령어를 수행하여 당신의 쿠버네티스 클러스터가 외부 로드 벨런서를 지원하는 환경에서 실행되고 있는지 확인하십시오:
 
 {{< text bash >}}
 $ kubectl get svc istio-ingressgateway -n istio-system
@@ -241,7 +241,7 @@ istio-ingressgateway   LoadBalancer   172.21.109.129   130.211.10.121  80:31380/
 {{< /text >}}
 
 만약 `EXTERNAL-IP` 값이 설정되어 있다면, 당신의 환경은 수신 게이트웨이로 쓸 수 있는 외부 로드 벨런서를 가지고 있습니다.
-만약 `EXTERNAL-IP` 값이 `<none>` (혹은 영원히 `<pending>`)이라면, 당신의 환경은 수신 게이트웨이로 쓸 수 있는 외부 로드 벨런서를 가지고 있지 않습니다.
+만약 `EXTERNAL-IP` 값이 `<none>` (혹은 계속 `<pending>`)이라면, 당신의 환경은 수신 게이트웨이로 쓸 수 있는 외부 로드 벨런서를 가지고 있지 않습니다.
 이 경우 서비스의 [노드 포트(node port)](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)를 
 사용하여 게이트웨이에 접근할 수 있습니다.
 
@@ -329,10 +329,10 @@ $ export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -
 
 ### 외부 접근 확인하기 {#confirm}
 
-Bookinfo 어플리케이션이 위부로부터 접근이 가능한지 확인하기 위해 
+Bookinfo 어플리케이션이 외부로부터 접근이 가능한지 확인하기 위해 
 브라우저를 통해 Bookinfo product 페이지를 여십시오.
 
-1.  아래 명령어로 Bookinfo 어플리케이션의 외부 주소를 불러오십시오.
+1.  아래 명령어로 Bookinfo 어플리케이션의 외부 주소를 불러 오십시오.
 
     {{< text bash >}}
     $ echo "http://$GATEWAY_URL/productpage"
@@ -342,11 +342,11 @@ Bookinfo 어플리케이션이 위부로부터 접근이 가능한지 확인하�
 
 ## 대시보드 보기 {#dashboard}
 
-Istio는 [다양한](/docs/ops/integrations) 원격 측정 어플리케이션과 결합할 수 있습니다. 이들은 당신의 서비스 메쉬 구조에 대한 이해를 
+Istio는 [다양한](/kr/docs/ops/integrations) 원격 측정 어플리케이션과 결합할 수 있습니다. 이들 어플리케이션은 당신의 서비스 메쉬 구조에 대한 이해를 
 돕고, 메쉬의 배치를 보여주며, 메쉬의 상태를 분석합니다.
 
-아래 지침을 활용하여 [Prometheus](/docs/ops/integrations/prometheus/), [Grafana](/docs/ops/integrations/grafana), 
-[Jaeger](/docs/ops/integrations/jaeger/)와 함께, [Kiali](/docs/ops/integrations/kiali/) 대시보드를 배포하십시오.
+아래 지침을 활용하여 [Prometheus](/kr/docs/ops/integrations/prometheus/), [Grafana](/kr/docs/ops/integrations/grafana), 
+[Jaeger](/kr/docs/ops/integrations/jaeger/)와 함께, [Kiali](/kr/docs/ops/integrations/kiali/) 대시보드를 배포하십시오.
 
 1.  [Kiali 및 여타 addons]({{< github_tree >}}/samples/addons)을 설치하고 이들이 배포될 때까지 기다리십시오.
 
@@ -368,7 +368,7 @@ Istio는 [다양한](/docs/ops/integrations) 원격 측정 어플리케이션과
     $ istioctl dashboard kiali
     {{< /text >}}
 
-1.  왼쪽 네비게이션 메뉴에서 _Graph_를 선택하고, _Namespace_ 드랍다운에서 _default_를 선택하세요.
+1.  왼쪽 네비게이션 메뉴에서 _Graph_ 를 선택하고, _Namespace_ 드랍다운에서 _default_ 를 선택하세요.
 
     {{< tip >}}
     {{< boilerplate trace-generation >}}
@@ -386,20 +386,20 @@ Istio는 [다양한](/docs/ops/integrations) 원격 측정 어플리케이션과
 아래 리스트는 `demo` 설치를 활용하여 초보자들이 Istio의 기능들을 평가해 볼 수 있는 좋은 과제들 
 입니다:
 
-- [요청 라우팅(Request routing)](/docs/tasks/traffic-management/request-routing/)
-- [결함 주입(Fault injection)](/docs/tasks/traffic-management/fault-injection/)
-- [트래픽 전환(Traffic shifting)](/docs/tasks/traffic-management/traffic-shifting/)
-- [측정지표 검색(Querying metrics)](/docs/tasks/observability/metrics/querying-metrics/)
-- [측정지표 시각화(Visualizing metrics)](/docs/tasks/observability/metrics/using-istio-dashboard/)
-- [외부 서비스 접근(Accessing external services)](/docs/tasks/traffic-management/egress/egress-control/)
-- [메쉬 시각화(Visualizing your mesh)](/docs/tasks/observability/kiali/)
+- [요청 라우팅(Request routing)](/kr/docs/tasks/traffic-management/request-routing/)
+- [결함 주입(Fault injection)](/kr/docs/tasks/traffic-management/fault-injection/)
+- [트래픽 전환(Traffic shifting)](/kr/docs/tasks/traffic-management/traffic-shifting/)
+- [측정지표 검색(Querying metrics)](/kr/docs/tasks/observability/metrics/querying-metrics/)
+- [측정지표 시각화(Visualizing metrics)](/kr/docs/tasks/observability/metrics/using-istio-dashboard/)
+- [외부 서비스 접근(Accessing external services)](/kr/docs/tasks/traffic-management/egress/egress-control/)
+- [메쉬 시각화(Visualizing your mesh)](/kr/docs/tasks/observability/kiali/)
 
 실배포 사용을 위한 Istio 설정 전, 아래 리소스를 참고하세요: 
 
-- [배포 모델(Deployment models)](/docs/ops/deployment/deployment-models/)
-- [배포 모범 사례(Deployment best practices)](/docs/ops/best-practices/deployment/)
-- [포드 요구사항(Pod requirements)](/docs/ops/deployment/requirements/)
-- [일반 설치 지침(General installation instructions)](/docs/setup/)
+- [배포 모델(Deployment models)](/kr/docs/ops/deployment/deployment-models/)
+- [배포 모범 사례(Deployment best practices)](/kr/docs/ops/best-practices/deployment/)
+- [포드 요구사항(Pod requirements)](/kr/docs/ops/deployment/requirements/)
+- [일반 설치 지침(General installation instructions)](/kr/docs/setup/)
 
 ## Istio 커뮤니티 참여
 

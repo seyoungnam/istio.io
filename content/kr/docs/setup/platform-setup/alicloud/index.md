@@ -13,47 +13,40 @@ test: n/a
 
 {{< boilerplate untested-document >}}
 
-Follow these instructions to prepare an
-[Alibaba Cloud Kubernetes Container Service](https://www.alibabacloud.com/product/kubernetes)
-cluster for Istio.
-You can deploy a Kubernetes cluster to Alibaba Cloud quickly and easily in the
-`Container Service console`, which fully supports Istio.
+[알리바바 클라우드 쿠버네티스 컨테이너 서비스](https://www.alibabacloud.com/product/kubernetes) 클러스터 내 Istio 사용을 위해 
+아래 설명을 참고하세요. `Container Service console`에서 알리바바 클라우드에 Istio를 완전히 지원하는 쿠버네티스 클러스터를 빠르고 쉽게 배포할 
+수 있습니다. 
+
 
 {{< tip >}}
-Alibaba Cloud offers a fully managed service mesh platform named Alibaba Cloud Service Mesh (ASM),
- which is fully compatible with Istio. Refer to
- [Alibaba Cloud Service Mesh](https://www.alibabacloud.com/help/doc-detail/147513.htm) for
- details and instructions.
+알리바바 클라우드는 Alibaba Cloud Service Mesh (ASM)라 불리는 완전 관리형 서비스 메시 플랫폼을 제공하며, Istio와 완벽하게 
+호환됩니다. 더 자세한 내용과 설명은 [Alibaba Cloud Service Mesh](https://www.alibabacloud.com/help/doc-detail/147513.htm)를 
+참고하세요.
 {{< /tip >}}
 
-## Prerequisites
+## 필수 구성요소
 
-1. [Follow the Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/95108.htm)
-to activate the following services: Container Service, Resource Orchestration
- Service (ROS), and RAM.
+1. Container Service, Resource Orchestration Service (ROS), 그리고 RAM 서비스를 사용하려면 
+[알리바바 클라우드 설명서](https://www.alibabacloud.com/help/doc-detail/95108.htm)를 참고하세요.
 
-## Procedure
 
-1. Log on to the `Container Service console`, and click **Clusters** under
-**Kubernetes** in the left-side navigation pane to enter the **Cluster List** page.
+## 순서
 
-1. Click the **Create Kubernetes Cluster** button in the upper-right corner.
+1. `컨테이너 서비스 콘솔`에 로그인한 후, 왼쪽 네비게이션 섹션 내 **Kubernetes** 아래  **Clusters**를 
+클릭하여 **Cluster List** 페이지에 들어가십시오.
 
-1. Enter the cluster name. The cluster name can be 1–63 characters long and
-it can contain numbers, Chinese characters, English letters, and hyphens (-).
+1. 오른쪽 상단의 **Create Kubernetes Cluster** 버튼을 클릭하세요.
 
-1. Select the **region** and **zone** in which the cluster resides.
+1. 클러스터 이름을 입력하세요. 클러스터 이름은 1-63 글자수 내에서 설정해야 하며, 숫자, 한자, 영어, 그리고 하이픈 (-)도 입력 가능합니다.
 
-1. Set the cluster network type. Kubernetes clusters only support the VPC
-network type now.
+1. 클러스터가 구동되고 있는 **region**과 **zone**을 선택하세요.
 
-1. Configure the node type, Pay-As-You-Go and Subscription types are supported.
+1. 클러스터 네트워크 타입을 선택하세요. 현재 쿠버네티스 클러스터는 VPC 네트워크 타입만을 지원합니다.
 
-1. Configure the master nodes. Select the generation, family, and type for the
-master nodes.
+1. 노드 타입을 설정하세요. Pay-As-You-Go와 구독 타입이 지원됩니다.
 
-1. Configure the worker nodes. Select whether to create a worker node or add an
- existing ECS instance as the worker node.
+1. 마스터 노드를 설정하세요. 마스터 노드의 generation, family, 및 type을 선택하세요.
 
-1. Configure the logon mode, and configure the Pod Network CIDR and Service
-CIDR.
+1. 워커 노드를 설정하세요. 새 워커 노드를 만들거나 기존의 ECS 인스턴스를 워커 노드로 추가하세요.
+
+1. 로그온 모드를 설정하고, Pod Network CIDR과 Service CIDR을 설정하세요.
